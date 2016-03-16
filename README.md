@@ -55,7 +55,7 @@ pip install -e slackd
 ### Usage
 ---------
 
-###### Starting
+##### Getting Started
 
 After installation getting started is easy, first start slackd in a shell:
 
@@ -68,17 +68,19 @@ token, which is necessary to go any further. After supplying the token
 the daemon will begin running in the background and you'll be listening in
 for incoming real time messages.
 
-###### Sending messages
+###### Sending Messages
 
 Well you're probably gonna want to respond to incoming messages, its as easy
 as possible.
 
 ### Reference
 
-A list of all the available cli commands, with a short description.
+Here's a list of all the available cli commands, with a short description.
 
-`slackd users` - Displays all team users, with details and status
-`slackd channels` Shows all the channels that exist for the team
+| Command             | Description                                           | 
+| ------------------- | ----------------------------------------------------- |
+| slackd users        | Shows a list of all users in the team, with a status  |
+| slackd channels     | Shows a list of all available channels for the team   |
 
 ### Contributing
 ----------------
