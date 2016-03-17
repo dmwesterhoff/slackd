@@ -68,12 +68,13 @@ token, which is necessary to go any further. After supplying the token
 the daemon will begin running in the background and you'll be listening in
 for incoming real time messages.
 
-###### Sending Messages
+##### Sending Messages
 
 Well you're probably gonna want to respond to incoming messages, its as easy
 as possible.
 
 ### Reference
+-------------
 
 Here's a list of all the available cli commands, with a short description.
 
@@ -81,6 +82,8 @@ Here's a list of all the available cli commands, with a short description.
 | ------------------- | ----------------------------------------------------- |
 | slackd users        | Shows a list of all users in the team, with a status  |
 | slackd channels     | Shows a list of all available channels for the team   |
+| slackd status       | Displays basic info on the authenticated user         |
+| slackd logs         | Displays access logs for the team                     |
 
 ### Contributing
 ----------------
