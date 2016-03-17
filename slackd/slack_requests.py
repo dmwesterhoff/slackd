@@ -33,18 +33,19 @@ def auth():
                          params={'token': token})
 
 
-def list_channels():
+def channels():
     """This method returns a list of all channels in the team"""
     token = os.environ['SLACK_TOKEN']
     return requests.post('https://slack.com/api/channels.list',
                          params={'token': token})
 
 
-def list_users():
+def users():
     """This method returns a list of all users on the team"""
     token = os.environ['SLACK_TOKEN']
     return requests.post('https://slack.com/api/users.list',
-                         params={'token': token})
+                         params={'token': token,
+                                 'presence': True})
 
 
 def post_message(channel, message):
@@ -59,3 +60,16 @@ def post_message(channel, message):
                                  'channel': channel,
                                  'text': message,
                                  'as_user': True})
+
+
+def access_logs(count=100, page=1):
+    """Returns Slack access logs on the team
+
+    :param count: (optional) Number of items to return
+    :param page: (optional) Page number of results to return
+    """
+    token = os.environ['SLACK_TOKEN']
+    return requests.post('https://slack.com/api/team.accessLogs',
+                         params={'token': token,
+                                 'count': count,
+                                 'page': page})
