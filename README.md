@@ -84,6 +84,10 @@ Here's a list of all the available cli commands, with a short description.
 | slackd channels     | Shows a list of all available channels for the team   |
 | slackd status       | Displays basic info on the authenticated user         |
 | slackd logs         | Displays access logs for the team                     |
+| slackd open         | Opens the teams slack homepage in a web browser       |
+| slackd start        | Starts the slack websocket daemon                     |
+| slackd stop         | Halts the slack websocket daemon                      |
+| slackd restart      | Restarts the slack websocket daemon                   |
 
 ### Contributing
 ----------------
