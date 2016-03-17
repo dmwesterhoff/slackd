@@ -55,13 +55,13 @@ def status():
         username = data['user']
         team = data['team']
         url = data['url']
-        click.secho("User: ", nl=False, fg='green')
+        click.secho("User: ", nl=False, fg='yellow')
         click.secho("{} ".format(username))
         # click.secho("({})".format(user_id))
-        click.secho("Team: ", nl=False, fg='green')
+        click.secho("Team: ", nl=False, fg='yellow')
         click.secho("{} ".format(team))
         # click.secho("({})".format(team_id))
-        click.secho("Home: ", nl=False, fg='green')
+        click.secho("Home: ", nl=False, fg='yellow')
         click.secho("{} ".format(url), underline=True)
     else:
         click.echo('wtf')
@@ -87,7 +87,10 @@ def users():
                          user['profile'].get('email', None)]
             table_data.append(user_data)
         table_data.sort(key=operator.itemgetter(2))
-        table_headers = ['User', 'Name', 'Presence', 'Email']
+        table_headers = [click.style('User', fg='yellow'),
+                         click.style('Name', fg='yellow'),
+                         click.style('Presence', fg='yellow'),
+                         click.style('Email', fg='yellow')]
         click.secho(tabulate.tabulate(table_data,
                                       table_headers,
                                       tablefmt="fancy_grid"))
@@ -120,7 +123,9 @@ def channels():
             else:
                 data[1] = 'no'
 
-        table_headers = ['Name', 'Member?', 'Members']
+        table_headers = [click.style('Name', fg='yellow'),
+                         click.style('Member?', fg='yellow'),
+                         click.style('Members', fg='yellow')]
         click.secho(tabulate.tabulate(table_data,
                                       table_headers,
                                       tablefmt="fancy_grid"))

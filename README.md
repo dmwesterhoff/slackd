@@ -77,17 +77,33 @@ as possible.
 -------------
 
 Here's a list of all the available cli commands, with a short description.
+The commands are listed alphabetically in submodule order, except the daemon
+control functions which appear first.
 
-| Command             | Description                                           | 
-| ------------------- | ----------------------------------------------------- |
-| slackd users        | Shows a list of all users in the team, with a status  |
-| slackd channels     | Shows a list of all available channels for the team   |
-| slackd status       | Displays basic info on the authenticated user         |
-| slackd logs         | Displays access logs for the team                     |
-| slackd open         | Opens the teams slack homepage in a web browser       |
-| slackd start        | Starts the slack websocket daemon                     |
-| slackd stop         | Halts the slack websocket daemon                      |
-| slackd restart      | Restarts the slack websocket daemon                   |
+| Command                                      | Description                                           | 
+| -------------------------------------------- | ----------------------------------------------------- |
+| slackd start                                 | Starts the slack websocket daemon                     |
+| slackd stop                                  | Halts the slack websocket daemon                      |
+| slackd restart                               | Restarts the slack websocket daemon                   |
+| slackd channels                              | Shows a list of all available channels for the team   |
+| slackd #[CHANNEL] "message"                  | Sends the provided message to the channel             |
+| slackd #[CHANNEL] archive                    | Create a new channel with the supplied name           |
+| slackd #[CHANNEL] create                     | Create a new channel with the supplied name           |
+| slackd #[CHANNEL] history                    | Shows recent history of channel messages & events     |
+| slackd #[CHANNEL] info                       | Gets information on the channel                       |
+| slackd #[CHANNEL] join                       | Joins the channel or creates if it doesn't exist      |
+| slackd #[CHANNEL] leave                      | Leaves the channel specified                          |
+| slackd logs                                  | Displays access logs for the team                     |
+| slackd ilogs                                 | Displays integration logs for the team                |
+| slackd open                                  | Opens the teams slack homepage in a web browser       |
+| slackd search [QUERY]                        | Search messages and files matching the query          |
+| slackd search files [QUERY]                  | Search files matching the query                       |
+| slackd search messages [QUERY]               | Search messages matching the query                    |
+| slackd status                                | Displays basic info on the authenticated user         |
+| slackd team                                  | Displays basic info on user's team                    |
+| slackd users                                 | Shows a list of all users in the team, with a status  |
+| slackd @[USERNAME] "message"                 | Sends a direct message to the user                    |
+| slackd @[USERNAME]                           | Gets information on the given user                    |
 
 ### Contributing
 ----------------
@@ -105,6 +121,11 @@ Got a great idea and want to contribute? Here's how you can help...
 
 ### Roadmap
 -----------
+
+* +90% testing coverage
+* Option for OAuth setup when getting started
+* Stars, Emoji, Pins, DND, Reactions, Usergroups and File comments methods
+* Chat 'delete' and 'update'
 
 ### Author
 ----------
