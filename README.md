@@ -25,9 +25,10 @@ messages or to send outgoing ones.
 ### Features
 ------------
 
-- Never change from your terminal to check or respond to slack messages
-- Easy command line interface to interact with slack
-- Daemonized slack websocket client receives messages in real time
+* Never change from your terminal to check or respond to slack messages
+* Easy command line interface to interact with slack
+* Daemonized slack websocket client receives messages in real time
+* Thorough documentation, works well as a tool to explore the slack API too
 
 ### Installation
 ----------------
@@ -77,8 +78,10 @@ as possible.
 -------------
 
 Here's a list of all the available cli commands, with a short description.
-The commands are listed alphabetically in submodule order, except the daemon
-control functions which appear first.
+The commands are listed alphabetically in subcommand order, except the daemon
+control functions which appear first. The convention is a fairly consistent 
+derivative of the slack api methods, some commands such as `slackd logs` 
+have been shorted for simplicity.
 
 | Command                                      | Description                                           | 
 | -------------------------------------------- | ----------------------------------------------------- |
@@ -87,14 +90,22 @@ control functions which appear first.
 | slackd restart                               | Restarts the slack websocket daemon                   |
 | slackd channels                              | Shows a list of all available channels for the team   |
 | slackd #[CHANNEL] "message"                  | Sends the provided message to the channel             |
-| slackd #[CHANNEL] archive                    | Create a new channel with the supplied name           |
+| slackd #[CHANNEL] archive                    | Archives the channel                                  |
+| slackd #[CHANNEL] unarchive                  | Unarchives the channel                                |
 | slackd #[CHANNEL] create                     | Create a new channel with the supplied name           |
 | slackd #[CHANNEL] history                    | Shows recent history of channel messages & events     |
 | slackd #[CHANNEL] info                       | Gets information on the channel                       |
 | slackd #[CHANNEL] join                       | Joins the channel or creates if it doesn't exist      |
 | slackd #[CHANNEL] leave                      | Leaves the channel specified                          |
-| slackd logs                                  | Displays access logs for the team                     |
+| slackd #[CHANNEL] invite @[USER]             | Invites the user to the given channel                 |
+| slackd #[CHANNEL] kick @[USER]               | Kicks the user from the given channel                 |
+| slackd #[CHANNEL] purpose [TEXT]             | Sets the purpose text for the channel                 |
+| slackd #[CHANNEL] topic [TEXT]               | Sets the topic text for the channel                   |
+| slackd #[CHANNEL] rename [NEW-NAME]          | Renames the channel to a new name                     |
+| slackd files                                 | Shows team files                                      |
+| slackd groups                                | Lists private channels the user has access to         |
 | slackd ilogs                                 | Displays integration logs for the team                |
+| slackd logs                                  | Displays access logs for the team                     |
 | slackd open                                  | Opens the teams slack homepage in a web browser       |
 | slackd search [QUERY]                        | Search messages and files matching the query          |
 | slackd search files [QUERY]                  | Search files matching the query                       |

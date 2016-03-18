@@ -9,12 +9,13 @@ slackd.slackd
 
 """
 
-import operator
-import webbrowser
-import tabulate
+from __future__ import absolute_import
 import click
-import slack_requests
-from common.pretty_json import pretty_json
+from commands.search import search
+from commands.open import open
+from commands.status import status
+from commands.users import users
+from commands.channels import channels
 
 
 # Root Command
@@ -24,122 +25,13 @@ def slackd():
     pass
 
 
-# Subcommands
-# ~~~~~~~~~~~
-@click.command()
-def open():
-    """Opens a new browser window to the users Slack homepage"""
-    try:
-        response = slack_requests.auth()
-    except Exception as e:
-        click.echo(str(e))
-
-    if response.ok:
-        url = response.json()['url']
-        webbrowser.open(url)
-    else:
-        click.echo('wtf')
-
-
-@click.command()
-def status():
-    """Shows status of the currently authed user if a Slack API Token has
-    been properly provided"""
-    try:
-        response = slack_requests.auth()
-    except Exception as e:
-        click.echo(str(e))
-
-    if response.ok:
-        data = response.json()
-        username = data['user']
-        team = data['team']
-        url = data['url']
-        click.secho("User: ", nl=False, fg='yellow')
-        click.secho("{} ".format(username))
-        # click.secho("({})".format(user_id))
-        click.secho("Team: ", nl=False, fg='yellow')
-        click.secho("{} ".format(team))
-        # click.secho("({})".format(team_id))
-        click.secho("Home: ", nl=False, fg='yellow')
-        click.secho("{} ".format(url), underline=True)
-    else:
-        click.echo('wtf')
-
-
-@click.command()
-def users():
-    """List all of the team's users and their status"""
-    try:
-        response = slack_requests.users()
-    except Exception as e:
-        click.echo(str(e))
-
-    if response.ok:
-        users = response.json()['members']
-
-        # Collect array of arrays that contain user data in column order
-        table_data = []
-        for user in users:
-            user_data = [user['name'],
-                         user.get('real_name', None),
-                         user.get('presence', 'bot'),
-                         user['profile'].get('email', None)]
-            table_data.append(user_data)
-        table_data.sort(key=operator.itemgetter(2))
-        table_headers = [click.style('User', fg='yellow'),
-                         click.style('Name', fg='yellow'),
-                         click.style('Presence', fg='yellow'),
-                         click.style('Email', fg='yellow')]
-        click.secho(tabulate.tabulate(table_data,
-                                      table_headers,
-                                      tablefmt="fancy_grid"))
-    else:
-        click.secho('wtf')
-
-
-@click.command()
-def channels():
-    """List all available channels for the team"""
-    try:
-        response = slack_requests.channels()
-    except Exception as e:
-        click.secho(str(e))
-
-    if response.ok:
-        channels = response.json()['channels']
-
-        table_data = []
-        for channel in channels:
-            data = [channel['name'],
-                    channel['is_member'],
-                    channel['num_members']]
-            table_data.append(data)
-        table_data.sort(key=operator.itemgetter(2), reverse=True)
-
-        for data in table_data:
-            if data[1]:
-                data[1] = 'yes'
-            else:
-                data[1] = 'no'
-
-        table_headers = [click.style('Name', fg='yellow'),
-                         click.style('Member?', fg='yellow'),
-                         click.style('Members', fg='yellow')]
-        click.secho(tabulate.tabulate(table_data,
-                                      table_headers,
-                                      tablefmt="fancy_grid"))
-
-    else:
-        click.secho('wtf')
-
-
 # Command Manifest
 # ~~~~~~~~~~~~~~~~
 slackd.add_command(open)
 slackd.add_command(status)
 slackd.add_command(users)
 slackd.add_command(channels)
+slackd.add_command(search)
 
 
 # Run Script
